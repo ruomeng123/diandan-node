@@ -16,9 +16,11 @@ const params = qs.stringify({
 })
 // 获取token请求路径
 const url = 'https://api.weixin.qq.com/cgi-bin/token?' + params
-
 // 数据库插入记录请求路径
 const addUrl = 'https://api.weixin.qq.com/tcb/databaseadd?access_token='
+// 数据库查询记录请求路径
+const queryUrl = 'https://api.weixin.qq.com/tcb/databasequery?access_token='
+
 // 云环境ID
 const env = 'cloud1-2gci1hg2f2593f4d'
 
@@ -69,5 +71,6 @@ class GetAccessToken {
 // 导出
 module.exports = {
 	GetAccessToken,
-	addUrl
+	addUrl,
+	queryUrl
 }
