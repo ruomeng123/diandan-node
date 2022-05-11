@@ -70,7 +70,7 @@ router.post('/login',async ctx => {
 
 // 验证token
 router.get('/test', new Auth().m, async ctx => {
-	console.log(ctx.auth.uid);
+	console.log(ctx.auth.uid); // 1652112263154
 })
 
 // 导出接口

@@ -39,9 +39,38 @@ class Checking {
 			throw new result(passwordMsg, 202)
 		}
 	}
+	// 方法:校验参数为空数组
+	Emptyarr(num, arrMsg) {
+		// 找到参数中的字符串数组,转换为数组后,判断是否为空数组
+		if(JSON.parse(this.obj[num]).length === 0) {
+			throw new result(arrMsg, 202)
+		}
+	}
+	// 方法:检验参数为空格符
+	Space(msgList) {
+		// 将obj的每一个数组子项过滤出符合下面条件的新数组
+		const newObj = this.obj.filter(item => {
+			// 当前子项字符串中去掉空格符后组成一个新数组,用join方法使它变成字符串,字符串长度为零表示这个参数全是空格符,别忘记return!!!
+			return item.split(" ").join("").length === 0
+		})
+		// 得到全是空格符的这个参数的数组下标,没有则返回-1
+		const num = this.obj.indexOf(newObj[0])
+		if(num !== -1) {
+			// 代表找到了该参数,则根据下标返回对应的错误提示
+			throw new result(msgList[num], 202)
+		}
+	}
+	// 方法:校验参数为空
+	Blank() {
+		const num = this.obj.indexOf('')
+		if(num !== -1) {
+			// 代表找到了空参数
+			throw new result(msgList[num], 202)
+		}
+	}
 }
 
-//  创建子类："注册板块"的校验
+// 创建子类："注册板块"的校验
 class Register extends Checking {
 	start() {
 		super.Errunder()
@@ -50,7 +79,20 @@ class Register extends Checking {
 	}
 	
 }
+// 创建子类："商家信息"的校验
+class Shopinfo extends Checking {
+	start() {
+		// 定义错误提示数组,按需返回
+		const msgList = ['请上传店铺名称', '请上传店铺地址', '请上传店铺logo']
+		super.Errunder()
+		super.Space(msgList)
+		super.Blank(msgList)
+		// 前端上传的商家信息中,只有logo是用数组格式上传的(element需要)
+		super.Emptyarr(2, msgList[2])
+	}
+}
 
 module.exports = {
-	Register
+	Register,
+	Shopinfo
 }
