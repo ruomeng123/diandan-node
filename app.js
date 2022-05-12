@@ -19,10 +19,12 @@ app.use(abnormal)
 // 注册,登录接口
 const login = require('./router/login/login.js')
 const merchantInfo = require('./router/merchantInfo/merchantInfo.js')
+const dish = require('./router/dish/dish.js')
 
 // 配置路由接口
 router.use('/api', login)
 router.use('/api', merchantInfo)
+router.use('/api', dish)
 
 // 启动路由
 app.use(router.routes())

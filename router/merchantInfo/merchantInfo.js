@@ -7,7 +7,7 @@ const result = require('../../config/result.js')
 // 引入获取接口调用凭证的类
 const { GetAccessToken, addUrl, queryUrl, updateUrl } = require('../../config/databaseapi.js')
 // 引入公共参数校验的类
-const { Register, Shopinfo } = require('../../config/checking')
+const { Register, ShopInfo } = require('../../config/checking')
 // 引入校验token合法性的类
 const { Auth } = require('../../token/auth')
 // 引入文件上传存储

@@ -7,7 +7,7 @@ class Checking {
 	constructor(ctx, ...obj) {
 		this.ctx = ctx,
 		this.obj = obj
-		console.log(obj) // [ '13231511031', '123456aaa' ]
+		// console.log(obj) // [ '13231511031', '123456aaa' ]
 	}
 	// 方法：校验前端传过来参数值的是否为undefined
 	Errunder() {
@@ -80,7 +80,7 @@ class Register extends Checking {
 	
 }
 // 创建子类："商家信息"的校验
-class Shopinfo extends Checking {
+class ShopInfo extends Checking {
 	start() {
 		// 定义错误提示数组,按需返回
 		const msgList = ['请上传店铺名称', '请上传店铺地址', '请上传店铺logo']
@@ -91,8 +91,54 @@ class Shopinfo extends Checking {
 		super.Emptyarr(2, msgList[2])
 	}
 }
+// 创建子类："菜品类目"的校验
+class DishCategory extends Checking {
+	start() {
+		// 定义错误提示数组,按需返回
+		const msgList = ['请上传菜品类目名称']
+		super.Errunder()
+		super.Space(msgList)
+		super.Blank(msgList)
+	}
+}
+// 创建子类："菜品单位"的校验
+class DishUnit extends Checking {
+	start() {
+		// 定义错误提示数组,按需返回
+		const msgList = ['请添加菜品单位']
+		super.Errunder()
+		super.Space(msgList)
+		super.Blank(msgList)
+	}
+}
+// 创建子类："上架菜品参数"的校验
+class AddDish extends Checking {
+	start() {
+		// 定义错误提示数组,按需返回
+		const msgList = ['请添加菜品类目', '请上传菜品logo', '请添加菜品名称', '请添加菜品单价', '请添加菜品单位', '请上传菜品所属类目的cid']
+		super.Errunder()
+		super.Space(msgList)
+		super.Blank(msgList)
+		super.Emptyarr(1, msgList[1])
+	}
+}
+// 创建子类："修改菜品参数"的校验
+class UpdateDish extends Checking {
+	start() {
+		// 定义错误提示数组,按需返回
+		const msgList = ['请添加菜品id', '请添加菜品类目', '请上传菜品logo', '请添加菜品名称', '请添加菜品单价', '请添加菜品单位', '请上传菜品所属类目的cid']
+		super.Errunder()
+		super.Space(msgList)
+		super.Blank(msgList)
+		super.Emptyarr(2, msgList[2])
+	}
+}
 
 module.exports = {
 	Register,
-	Shopinfo
+	ShopInfo,
+	DishCategory,
+	DishUnit,
+	AddDish,
+	UpdateDish
 }
